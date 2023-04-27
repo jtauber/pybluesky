@@ -14,7 +14,10 @@ class Agent:
 
     def get(self, method, **params):
         r = requests.get(self.url_path + method, headers=self.headers(), params=params)
-        return r.json()
+        if r.status_code != 200:
+            raise Exception(r.json())
+        else:
+            return r.json()
 
     def post(self, method, **params):
         r = requests.post(self.url_path + method, headers=self.headers(), json=params)
