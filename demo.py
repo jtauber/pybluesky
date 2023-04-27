@@ -44,11 +44,22 @@ while True:
     result = ag.get("app.bsky.graph.getFollowers", actor=me, cursor=result["cursor"])
 
 
-
 ag.get("com.atproto.repo.describeRepo", repo=me)
 ag.get("com.atproto.repo.listRecords", repo=me, collection="app.bsky.feed.post")
-ag.get("com.atproto.repo.getRecord", repo=me, collection="app.bsky.feed.post", rkey="3jtubanyq5y2w")
+ag.get(
+    "com.atproto.repo.getRecord",
+    repo=me,
+    collection="app.bsky.feed.post",
+    rkey="3jtubanyq5y2w",
+)
 
 # at://did:plc:cvmmvawq5z2qxfhtu3umrx3f/app.bsky.graph.follow/3ju6ejrzybx22
 
-display(ag.get("com.atproto.repo.getRecord", repo=me, collection="app.bsky.graph.follow", rkey="3ju6ejrzybx22"))
+display(
+    ag.get(
+        "com.atproto.repo.getRecord",
+        repo=me,
+        collection="app.bsky.graph.follow",
+        rkey="3ju6ejrzybx22",
+    )
+)
