@@ -6,6 +6,11 @@ I'm releasing it super early for educational purposes only.
 Set environment variables `BLUESKY_IDENTIFIER` and `BLUESKY_PASSWORD` to run `demo.py`.
 The password should be an **App Password**, not your main password.
 
+- `atproto.py` basic client library for accessing the Bluesky PDS.
+- `utils.py` basic util functions
+- `demo.py` runnable script trying things out
+
+
 ## What I've Tried
 
 ### com.atproto.admin
