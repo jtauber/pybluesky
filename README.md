@@ -8,6 +8,7 @@ The password should be an **App Password**, not your main password.
 
 - `atproto.py` basic client library for accessing the Bluesky PDS.
 - `utils.py` basic util functions
+- `lexicon.py` work-in-progress module for dealing with lexicon files
 - `demo.py` runnable script trying things out
 
 
