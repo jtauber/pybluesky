@@ -6,19 +6,34 @@ class Lexicon:
         lexicon = json.load(open(filename))
         assert lexicon["lexicon"] == 1
         self.id = lexicon["id"]
+        assert type(self.id) == str  # NSID
+        self.revision = lexicon.get("revision")
+        if self.revision is not None:
+            assert type(self.revision) == int
+        self.description = lexicon.get("description")
+        if self.description is not None:
+            assert type(self.description) == str
 
         self.defs = {}
         for key, value in lexicon["defs"].items():
+            assert type(key) == str
             self.defs[key] = {
                 defn.my_type: defn
                 for defn in [
-                    Object,
-                    Procedure,
                     Query,
+                    Procedure,
                     Record,
-                    String,
-                    Subscription,
                     Token,
+                    Object,
+                    # Blob,
+                    # Image,
+                    # Video,
+                    # Audio,
+                    # Boolean,
+                    # Number,
+                    # Integer
+                    String,
+                    Subscription,  # @@@
                 ]
             }[value["type"]](value)
 
@@ -45,7 +60,7 @@ class Node:
         self.parameters = Params(value)
 
     def process_output(self, value):
-        self.output = Output(value)
+        self.output = Body(value)
 
     def process_errors(self, value):
         self.errors = [Error(error) for error in value]
@@ -81,6 +96,7 @@ class Node:
 
 class Query(Node):
     my_type = "query"
+    # type, description?, parameters?, output?, errors?
     properties = [
         {"type", "description", "output", "errors"},
         {"type", "description", "output"},
@@ -94,6 +110,7 @@ class Query(Node):
 
 class Procedure(Node):
     my_type = "procedure"
+    # type, description?, parameters?, input?, output?, errors?
     properties = [
         {"type", "description", "input", "errors"},
         {"type", "description", "input", "output", "errors"},
@@ -104,7 +121,7 @@ class Procedure(Node):
     ]
 
     def process_input(self, value):
-        self.input = Input(value)
+        self.input = Body(value)
 
 
 class Object(Node):
@@ -130,7 +147,8 @@ class Params(Node):
     ]
 
 
-class Output(Node):
+class Body(Node):
+    # description?, encoding, schema
     my_type = "(output)"
     properties = [
         {"encoding"},
@@ -147,28 +165,6 @@ class Output(Node):
             for prop in [
                 Object,
                 Ref,
-            ]
-        }[
-            value["type"]
-        ](value)
-
-
-class Input(Node):
-    my_type = "(input)"
-    properties = [
-        {"encoding"},
-        {"encoding", "schema"},
-    ]
-
-    def process_encoding(self, value):
-        assert value in ["application/json", "*/*", "application/vnd.ipld.car"], value
-        self.encoding = value
-
-    def process_schema(self, value):
-        self.schema = {
-            prop.my_type: prop
-            for prop in [
-                Object,
             ]
         }[
             value["type"]
@@ -274,6 +270,7 @@ class String(Node):
 
 class Array(Node):
     my_type = "array"
+    # description?, items. minLength?, maxLength?
     properties = [
         {"type", "items"},
         {"type", "items", "description"},
