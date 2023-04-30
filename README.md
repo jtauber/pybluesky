@@ -12,6 +12,7 @@ The password should be an **App Password**, not your main password.
 
 - `demo.py` runnable script trying things out
 - `cli.py` command-line interface
+- `followers.py` quick script to list your followers (display name and handle)
 
 
 ## What I've Tried
