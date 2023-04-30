@@ -19,16 +19,14 @@ class Agent:
         else:
             return r.json()
 
-    def post(self, method, **params):
-        r = requests.post(self.url_path + method, headers=self.headers(), json=params)
+    def post(self, method, payload):
+        r = requests.post(self.url_path + method, headers=self.headers(), json=payload)
         if r.status_code != 200:
             raise Exception(r.json())
         else:
             return r.json()
 
     def login(self, identifier, password):
-        r = self.post(
-            "com.atproto.server.createSession", identifier=identifier, password=password
-        )
+        r = self.post("com.atproto.server.createSession", {"identifier": identifier, "password": password})
         self.accessJwt = r["accessJwt"]
         return r
