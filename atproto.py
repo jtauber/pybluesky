@@ -38,3 +38,11 @@ class Agent:
         r = self.post("com.atproto.server.createSession", {"identifier": identifier, "password": password})
         self.accessJwt = r["accessJwt"]
         return r
+    
+    def page(self, callback, method, **kwargs):
+        result = self.get(method, **kwargs)
+        while True:
+            callback(result)
+            if result.get("cursor") is None:
+                break
+            result = self.get(method, cursor=result["cursor"], **kwargs)
