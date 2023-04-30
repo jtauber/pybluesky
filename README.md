@@ -89,3 +89,9 @@ Nothing yet.
 - new method `app.bsky.feed.getPosts`
 - `app.bsky.embed.record` now included `labels`
 
+- `viewerState` in `app.bsky.actor.defs` now has extra properties `blockedBy` (boolean) and `blocking` (at-uri)
+- `app.bsky.embed.record` allows for embedded records to reference posts as blocked
+- `app.bsky.feed.getAuthorFeed` can return a `BlockedActor` or `BlockedByActor` error
+- `app.bsky.feed.getPostThread` allows for a reference to a blocked post and (via change to `app.bsky.feed.defs`) `parent` and `replies` can also reference blocked posts
+- there is a new record `app.bsky.graph.block` for blocks with `subject` (did) and `createdAt` (datetime) properties
+- new method `app.bsky.graph.getBlocks` that returns who you are blocking (as an array of `profileView`s)
