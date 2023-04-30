@@ -45,6 +45,22 @@ def get_profile(actor: str):
     ag.login(IDENTIFIER, PASSWORD)
     display(ag.get("app.bsky.actor.getProfile", actor=actor))
 
+@app.command()
+def get_follows(actor: str, cursor: str = None):
+    ag.login(IDENTIFIER, PASSWORD)
+    if cursor is None:
+        display(ag.get("app.bsky.graph.getFollows", actor=actor))
+    else:
+        display(ag.get("app.bsky.graph.getFollows", actor=actor, cursor=cursor))
+
+@app.command()
+def get_followers(actor: str, cursor: str = None):
+    ag.login(IDENTIFIER, PASSWORD)
+    if cursor is None:
+        display(ag.get("app.bsky.graph.getFollowers", actor=actor))
+    else:
+        display(ag.get("app.bsky.graph.getFollowers", actor=actor, cursor=cursor))
+
 
 if __name__ == "__main__":
     app()
