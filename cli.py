@@ -61,6 +61,24 @@ def get_followers(actor: str, cursor: str = None):
     else:
         display(ag.get("app.bsky.graph.getFollowers", actor=actor, cursor=cursor))
 
+@app.command()
+def describe_repo(repo: str):
+    ag.login(IDENTIFIER, PASSWORD)
+    display(ag.get("com.atproto.repo.describeRepo", repo=repo))
+
+@app.command()
+def list_records(repo: str, collection: str, cursor: str = None):
+    ag.login(IDENTIFIER, PASSWORD)
+    if cursor is None:
+        display(ag.get("com.atproto.repo.listRecords", repo=repo, collection=collection))
+    else:
+        display(ag.get("com.atproto.repo.listRecords", repo=repo, collection=collection, cursor=cursor))
+
+@app.command()
+def get_record(repo: str, collection: str, rkey: str):
+    ag.login(IDENTIFIER, PASSWORD)
+    display(ag.get("com.atproto.repo.getRecord", repo=repo, collection=collection, rkey=rkey))
+
 
 if __name__ == "__main__":
     app()
