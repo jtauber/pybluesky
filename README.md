@@ -14,6 +14,7 @@ The password should be an **App Password**, not your main password.
 - `cli.py` command-line interface
 - `followers.py` quick script to list your followers (display name and handle)
 - `post.py` quick script to post
+- `repos.py` quick script to list repos
 
 
 ## What I've Tried
@@ -50,7 +51,7 @@ Nothing yet.
 
 ### com.atproto.sync
 
-Nothing yet.
+* listRepos
 
 ### app.bsky.actor
 
