@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 requests = "*"
 python-dotenv = "*"
+typer = {extras = ["all"], version = "*"}
 
 [dev-packages]
 black = "*"

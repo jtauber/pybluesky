@@ -63,3 +63,5 @@ display(
         rkey="3ju6ejrzybx22",
     )
 )
+
+display(ag.get("com.atproto.server.getAccountInviteCodes"))
