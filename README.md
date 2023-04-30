@@ -59,7 +59,7 @@ Nothing yet.
 
 ### app.bsky.feed
 
-No methods.
+* getPosts
 
 Collections:
 
@@ -81,3 +81,10 @@ Nothing yet.
 ### app.bsky.richtext
 
 Nothing yet.
+
+
+## Changes to API since I first started
+
+- new method `app.bsky.feed.getPosts`
+- `app.bsky.embed.record` now included `labels`
+

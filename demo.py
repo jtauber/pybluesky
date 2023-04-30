@@ -65,3 +65,16 @@ display(
 )
 
 display(ag.get("com.atproto.server.getAccountInviteCodes"))
+
+
+
+# at://did:plc:cvmmvawq5z2qxfhtu3umrx3f/app.bsky.feed.post/3juhpcbbgjq2f
+
+print()
+
+display(
+    ag.get(
+        "app.bsky.feed.getPosts",
+        uris=["at://did:plc:cvmmvawq5z2qxfhtu3umrx3f/app.bsky.feed.post/3jtubanyq5y2w"],
+    )
+)
