@@ -1,2 +1,2 @@
-.env
-lexicons
+.DS_Store
+__pycache__/
